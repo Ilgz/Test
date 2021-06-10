@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">UconTv</string>
+    <string name="facebook_app_id">463381324868964</string>
+    <string name="fb_login_protocol_scheme">fb463381324868964</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragmentation</string>
+    <string name="blank">\u0020\u0020\u0020\u0020</string>
+    <string name="Промокод">Промокод</string>
+    <string name="Устройства">Устройства</string>
+    <string name="Настройки">Настройки</string>
+    <string name="Выйти">Выйти</string>
+    <string name="Имяпо">Имя пользователя</string>
+    <string name="Поддержка">Поддержка</string>
+    <string name="ВашБаланс">Ваш баланс 0 сом</string>
+
+</resources>
