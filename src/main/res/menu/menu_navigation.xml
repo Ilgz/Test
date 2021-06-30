@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/glavstr"
+        android:icon="@drawable/ic_hom"
+        android:title="Медиа"></item>
+    <item
+        android:id="@+id/menu_telek"
+        android:title="Телевидение"
+        android:icon="@drawable/ic_tv"></item>
+    <item
+        android:id="@+id/menu_profile"
+        android:title="Профиль"
+        android:icon="@drawable/ic_profile"></item>
+</menu>
