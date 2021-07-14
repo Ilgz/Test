@@ -1,31 +1,22 @@
 package com.example.player2.main_windows;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.player2.R;
-import com.example.player2.ui.GlavStranitsa;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import androidx.appcompat.app.AppCompatActivity;
 
-import org.jetbrains.annotations.NotNull;
+import com.example.player2.R;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class PromotionActivity extends AppCompatActivity {
@@ -40,62 +31,48 @@ public class PromotionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promo);
         initialize();
+getSupportActionBar().setTitle("Промокод");
+        Fetch.setOnClickListener(v -> {
+            hideKeyboard(v);
+            fetch();
+        });
+        editText.setOnEditorActionListener((v, actionId, event) -> {
 
-        getSupportActionBar().hide();
-        Fetch.setOnClickListener(v -> fetch());
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    hideKeyboard(v);
-                    DocumentReference documentReference = root.collection("Promocodes").document("jhNeUCSn4CsfXuc4I8Se");
-                    documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            if (documentSnapshot.exists()) {
-                                String back = editText.getText().toString();
-                                ball = false;
-                                progressBar.setVisibility(View.VISIBLE);
-                                for (int i = 1; i < 10; i++) {
-                                    String number = Integer.toString(i);
-                                    if (back.trim().equals(documentSnapshot.getString(number))) {
-                                        ball = true;
-                                        Toast.makeText(PromotionActivity.this, "Промокод был успешно активирован", Toast.LENGTH_LONG).show();
-                                        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = preferences.edit();
-                                        editor.putString("remember", documentSnapshot.getString(number));
-                                        editor.apply();
-                                        Intent intent = new Intent(PromotionActivity.this, GlavStranitsa.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-
-                                }
-                                if (ball == false) {
-                                    Toast.makeText(PromotionActivity.this, "Промокод не годен", Toast.LENGTH_SHORT).show();
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                }
-
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                hideKeyboard(v);
+                DocumentReference documentReference = root.collection("Promocodes").document("jhNeUCSn4CsfXuc4I8Se");
+                documentReference.get().addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String back = editText.getText().toString();
+                        ball = false;
+                        progressBar.setVisibility(View.VISIBLE);
+                        for (int i = 1; i < 10; i++) {
+                            String number = Integer.toString(i);
+                            if (back.trim().equals(documentSnapshot.getString(number))) {
+                                ball = true;
+                                Toast.makeText(PromotionActivity.this, "Промокод был успешно активирован", Toast.LENGTH_LONG).show();
+                                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("ValidPromo", documentSnapshot.getString(number));
+                                editor.apply();
+                                startActivity(new Intent(PromotionActivity.this,ProfileActivity.class));
                             }
 
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull @NotNull Exception e) {
-                            Toast.makeText(PromotionActivity.this, "Failed to get Data", Toast.LENGTH_SHORT).show();
+                        if (!ball) {
+                            Toast.makeText(PromotionActivity.this, "Промокод не годен", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
-                    });
-                    return true;
-                }
-                return false;
+
+                    }
+
+                }).addOnFailureListener(e -> Toast.makeText(PromotionActivity.this, "Failed to get Data", Toast.LENGTH_SHORT).show());
             }
+            return false;
         });
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    hideKeyboard(v);
-                }
+        editText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                hideKeyboard(v);
             }
         });
     }
@@ -108,42 +85,33 @@ public class PromotionActivity extends AppCompatActivity {
 
     public void fetch() {
         DocumentReference documentReference = root.collection("Promocodes").document("jhNeUCSn4CsfXuc4I8Se");
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    String back = editText.getText().toString();
-                    ball = false;
-                    progressBar.setVisibility(View.VISIBLE);
-                    for (int i = 1; i < 10; i++) {
-                        String number = Integer.toString(i);
-                        if (back.trim().equals(documentSnapshot.getString(number))) {
-                            ball = true;
-                            Toast.makeText(PromotionActivity.this, "Промокод был успешно активирован", Toast.LENGTH_LONG).show();
-                            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putString("remember", documentSnapshot.getString(number));
-                            editor.apply();
-                            Intent intent = new Intent(PromotionActivity.this, GlavStranitsa.class);
-                            startActivity(intent);
-                            finish();
-                        }
+        documentReference.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                String back = editText.getText().toString();
+                ball = false;
+                progressBar.setVisibility(View.VISIBLE);
+                for (int i = 1; i < 10; i++) {
+                    String number = Integer.toString(i);
+                    if (back.trim().equals(documentSnapshot.getString(number))) {
+                        ball = true;
+                        Toast.makeText(PromotionActivity.this, "Промокод был успешно активирован", Toast.LENGTH_LONG).show();
+                        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("ValidPromo", documentSnapshot.getString(number));
+                        editor.apply();
+                        startActivity(new Intent(PromotionActivity.this,ProfileActivity.class));
 
-                    }
-                    if (ball == false) {
-                        Toast.makeText(PromotionActivity.this, "Промокод не годен", Toast.LENGTH_SHORT).show();
-                        progressBar.setVisibility(View.INVISIBLE);
                     }
 
                 }
+                if (!ball) {
+                    Toast.makeText(PromotionActivity.this, "Промокод не годен", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
 
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                Toast.makeText(PromotionActivity.this, "Failed to get Data", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        }).addOnFailureListener(e -> Toast.makeText(PromotionActivity.this, "Failed to get Data", Toast.LENGTH_SHORT).show());
 
     }
 

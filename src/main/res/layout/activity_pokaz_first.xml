@@ -7,22 +7,12 @@
     android:background="@drawable/secondary_background"
     tools:context=".PokazFirst">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Kroko"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="5dp"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnav"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="@color/botom_color"
-        app:itemBackground="@color/botom_color"
+        android:background="@color/bottom_color"
+        app:itemBackground="@color/bottom_color"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,4 +20,16 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Kroko"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

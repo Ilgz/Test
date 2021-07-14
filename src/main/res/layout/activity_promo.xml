@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/secondary_background"
+    android:focusableInTouchMode="true"
+
     tools:context=".main_windows.PromotionActivity">
 
     <EditText
@@ -13,14 +15,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="592dp"
-        android:backgroundTint="@color/yellow"
-        android:ems="10"
+        android:layout_marginTop="62dp"
+        android:layout_marginBottom="2dp"
 
+        android:backgroundTint="@color/yellow"
         android:imeOptions="actionDone"
+        android:inputType="text"
+android:importantForAutofill="no"
         android:textColor="@color/white"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="57dp"></EditText>
+        app:layout_constraintBottom_toTopOf="@+id/oshibka1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView81"></EditText>
 
     <TextView
         android:id="@+id/textView81"
@@ -28,11 +35,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="163dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Введите  ваш промокод"
         android:textColor="@color/yellow"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/oshibka1"
@@ -40,11 +51,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="557dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="5dp"
         android:text="Загрузка..."
         android:textColor="@android:color/holo_red_dark"
         android:textSize="16sp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/SubmitButton1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCode1" />
 
     <Button
         android:id="@+id/SubmitButton1"
@@ -52,14 +69,17 @@
         android:layout_height="67dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="481dp"
+        android:layout_marginBottom="478dp"
         android:backgroundTint="@color/yellow"
         android:text="Принять"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="159dp"></Button>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oshibka1"></Button>
 
     <ProgressBar
         android:id="@+id/progressBar31"
@@ -68,14 +88,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="596dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="107dp"
+        android:layout_marginBottom="80dp"
         android:layout_toEndOf="@+id/editTextCode1"
         android:layout_weight="2"
         android:indeterminate="true"
         android:indeterminateTint="@color/yellow"
         android:indeterminateTintMode="src_atop"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/SubmitButton1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextCode1"
+        app:layout_constraintTop_toBottomOf="@+id/textView81" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

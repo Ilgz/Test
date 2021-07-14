@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/glavstr"
-        android:icon="@drawable/ic_hom"
+        android:icon="@drawable/ic_home"
         android:title="Медиа"></item>
     <item
         android:id="@+id/menu_telek"
         android:title="Телевидение"
-        android:icon="@drawable/ic_tv"></item>
+        android:icon="@drawable/ic_television__2_"></item>
     <item
         android:id="@+id/menu_profile"
         android:title="Профиль"

@@ -1,6 +1,5 @@
 package com.example.player2.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,25 +10,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.player2.R;
-import com.example.player2.main_windows.TeleFragment;
 import com.example.player2.models.Movie;
-import com.example.player2.ui.GlavStranitsa;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder> implements Filterable {
-    Context context;
-    List<Movie> mData;
+    final Context context;
+    final List<Movie> mData;
     List<Movie> mDataFilter;
-    MovieItemClickList movieItemClickList;
-    ImageView imageView;
+    final MovieItemClickList movieItemClickList;
 
     public MovieAdapter(Context context, List<Movie> mData, MovieItemClickList listener) {
         this.context = context;
@@ -43,7 +39,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Activity activity;
         View view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
 
         return new MyViewHolder(view);
@@ -55,7 +50,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         holder.TvTitle.setText(mDataFilter.get(position).getTitle());
         RequestOptions option=new RequestOptions();
         option.centerCrop();
-        Glide.with(context).load(mDataFilter.get(position).getThumbnail()).apply(option).into(holder.ImgMovie);
+        Glide.with(context).load(mDataFilter.get(position).getThumbnail()).transform(new GranularRoundedCorners(30,30,30,30)).into(holder.ImgMovie);
     }
 
     @Override
@@ -98,8 +93,8 @@ notifyDataSetChanged();
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView TvTitle;
-        private ImageView ImgMovie;
+        private final TextView TvTitle;
+        private final ImageView ImgMovie;
 
         public MyViewHolder(View itemview) {
 
@@ -107,12 +102,7 @@ notifyDataSetChanged();
             TvTitle = itemview.findViewById(R.id.item_movie_title);
             ImgMovie = itemview.findViewById(R.id.item_movie_img);
 
-            itemview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    movieItemClickList.OnMovieClick(mDataFilter.get(getAdapterPosition()), ImgMovie);
-                }
-            });
+            itemview.setOnClickListener(v -> movieItemClickList.OnMovieClick(mDataFilter.get(getAdapterPosition()), ImgMovie));
 
         }
     }

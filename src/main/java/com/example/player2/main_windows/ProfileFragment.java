@@ -12,29 +12,42 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.player2.R;
-import com.example.player2.ui.GlavStranitsa;
+import com.example.player2.ui.MediaActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.SetOptions;
 
+import org.jsoup.nodes.Document;
+
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
 
 public class ProfileFragment extends Fragment {
     private Button exit;
-    private static final long Start_Time_IN_MILLIS = 86400000;
+    private  long Start_Time_IN_MILLIS=86400000;
+
+private long AdTime;
     private TextView mTextViewCountDown;
-    private boolean mTimeRunning;
     private long mTimeLeftInMillis;
     private final String KEYMillisLeft = "mils";
-    private final String KEYTimeRunning = "boolean";
     private final String KEYTimeEndTime = "herb";
     private long mEndTime;
-    View v;
-
+   private View v;
+    private String phone;
+    private DocumentReference documentReference;
+private  CountDownTimer countDownTimer;
     public ProfileFragment() {
     }
 
@@ -42,121 +55,162 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         v = inflater.inflate(R.layout.fragment_profile, container, false);
-        ini();
+
+        mTextViewCountDown = v.findViewById(R.id.textView3);
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        SharedPreferences sharedPreferences= requireActivity().getSharedPreferences("phone", MODE_PRIVATE);
+       phone=   sharedPreferences.getString("phone","");
+
+       ini();
+
         BottomNavigationView bottomNavigationView = v.findViewById(R.id.bottomnav);
         bottomNavigationView.setSelectedItemId(R.id.menu_profile);
+        new  Handler (Looper.getMainLooper()).postDelayed(this::startTimer, 100);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.glavstr) {
-                startActivity(new Intent(getActivity(), GlavStranitsa.class));
+                startActivity(new Intent(getActivity(), MediaActivity.class));
                 return true;
             } else if (item.getItemId() == R.id.menu_telek) {
                 startActivity(new Intent(getActivity(), TeleChannelActivity.class));
                 return true;
             } else return item.getItemId() == R.id.menu_profile;
         });
-        mTextViewCountDown = v.findViewById(R.id.textView3);
 
         exit.setOnClickListener(v -> {
 
-            SharedPreferences preferences = requireActivity().getSharedPreferences("checkbox", MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("remember", "false");
-            editor.apply();
-            Intent intent = new Intent(getActivity(), PromotionActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
 
+            Intent intent = new Intent(getActivity(), RegisterActivity.class);
+            startActivity(intent);
 
         });
 
-       new  Handler (Looper.getMainLooper()).postDelayed(this::testToast, 1000);
+
+
         return v;
     }
 
-    private void testToast() {
-        startTimer();
-    }
 
-    private void startTimer() {
+    public void startTimer() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
-        new CountDownTimer(mTimeLeftInMillis, 1000) {
+        System.out.println("GoBack");
+       countDownTimer=  new CountDownTimer (mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
+                System.out.println("GoTick");
+                if (getActivity()!=null) {
+                    SharedPreferences getPreferences = getActivity().getSharedPreferences("checkbox", MODE_PRIVATE);
+                    int thirty = getPreferences.getInt("30days", 0);
+//                    documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onEvent(@Nullable @org.jetbrains.annotations.Nullable DocumentSnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
+//                        AdTime = value.getLong("AdditionalTime");
+//
+//                    }
+//                });
+
+                    mTimeLeftInMillis=millisUntilFinished;
+
+
+                    updateCountDownText();
+
+//                    if (333 == thirty) {
+//                        System.out.println("Hello");
+//                        countDownTimer.cancel();
+//
+//                        mTimeRunning = false;
+//                        Start_Time_IN_MILLIS = Long.parseLong("2592000000");
+//                        mTimeLeftInMillis = Start_Time_IN_MILLIS;
+//                        updateCountDownText();
+//                        SharedPreferences preferences = requireActivity().getSharedPreferences("checkbox", MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = preferences.edit();
+//                        editor.putInt("30days", 111);
+//                        editor.apply();
+//                    }
+                }
             }
+
 
             @Override
             public void onFinish() {
-                mTimeRunning = false;
-                SharedPreferences preferences = requireActivity().getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                startActivity(new Intent(getActivity(), RegisterActivity.class));
+//                SharedPreferences preferences = requireActivity().getSharedPreferences("checkbox", MODE_PRIVATE);
+//                SharedPreferences.Editor editor = preferences.edit();
+//                editor.putInt("30days",333 );
+//                editor.apply();
+
             }
         }.start();
-        mTimeRunning = true;
 
     }
 
     private void updateCountDownText() {
-        int hours = (int) (mTimeLeftInMillis / 1000) / 3600;
+        int days = (int) (mTimeLeftInMillis / 1000) / (3600*24);
+
+        int hours = (int) ((mTimeLeftInMillis / 1000)%86400) / 3600;
 
         int minutes = (int) ((mTimeLeftInMillis / 1000) % 3600) / 60;
 
         int seconds = (int) mTimeLeftInMillis / 1000 % 60;
-        String timeLeftFormat = String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds);
-        String TrueTimeLeftFormat=getString(R.string.blank) + timeLeftFormat;
-        mTextViewCountDown.setText(TrueTimeLeftFormat);
+
+        String timeLeftFormat = String.format(Locale.getDefault(), "%02d:%02d:%02d:%02d",days, hours, minutes, seconds);
+        String TrueTimeLeftFormat="     " + timeLeftFormat;
+
+
+
+
+        if(days>1){
+             String fimeLeftFormat = String.format(Locale.getDefault(), "%02d",days);
+            mTextViewCountDown.setText(fimeLeftFormat+" "+"Дней");
+
+        }
+
+        else{
+          mTextViewCountDown.setText(TrueTimeLeftFormat);
+        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        SharedPreferences prefs = requireActivity().getSharedPreferences("prefs", MODE_PRIVATE);
-        mTimeLeftInMillis = prefs.getLong(KEYMillisLeft, Start_Time_IN_MILLIS);
-        mTimeRunning = prefs.getBoolean(KEYTimeRunning, false);
+
+        SharedPreferences prefs=getActivity().getSharedPreferences("profile",MODE_PRIVATE);
+        mTimeLeftInMillis=prefs.getLong(KEYMillisLeft,Start_Time_IN_MILLIS);
         updateCountDownText();
-        if (mTimeRunning) {
-            mEndTime = prefs.getLong(KEYTimeEndTime, 0);
-            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
-            if (mTimeLeftInMillis < 0) {
-                mTimeLeftInMillis = 0;
-                mTimeRunning = false;
-                updateCountDownText();
-            } else {
-                startTimer();
-            }
-        }
+        mEndTime=prefs.getLong(KEYTimeEndTime,0);
+
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        SharedPreferences prefs = requireActivity().getSharedPreferences("prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putLong(KEYMillisLeft, mTimeLeftInMillis);
-        editor.putBoolean(KEYTimeRunning, mTimeRunning);
-        editor.putLong(KEYTimeEndTime, mEndTime);
+//            Map<String,Long> onstopper = new HashMap<>();
+//            onstopper.put("timeLeftInMillis", mTimeLeftInMillis);
+//            FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
+//            firebaseFirestore.collection("Customers").document(phone).set(onstopper,SetOptions.merge());
+        SharedPreferences prefs=getActivity().getSharedPreferences("profile",MODE_PRIVATE);
+        SharedPreferences.Editor editor=prefs.edit();
+        editor.putLong(KEYMillisLeft,mTimeLeftInMillis);
+        editor.putLong(KEYTimeEndTime,mEndTime);
         editor.apply();
 
     }
-
 
     void ini() {
 
         exit = v.findViewById(R.id.exit);
         SharedPreferences getPreferences = requireActivity().getSharedPreferences("phone", MODE_PRIVATE);
-        String checkbox = getPreferences.getString("member", "+996709872197");
+        String checkbox = getPreferences.getString("phone", "+996709872197");
         TextView profilePhone = v.findViewById(R.id.textView6);
         profilePhone.setText(checkbox);
         Button button = v.findViewById(R.id.button2);
-        button.setOnClickListener(v -> startActivity(new Intent(getActivity(), Dialo.class)));
+        button.setOnClickListener(v -> startActivity(new Intent(getActivity(), Support.class)));
         Button dialog = v.findViewById(R.id.button3);
+
+
+
         dialog.setOnClickListener(v -> startActivity(new Intent(getActivity(), PromotionActivity.class)));
 //
 //      TextView textView=findViewById(R.id.textView5);

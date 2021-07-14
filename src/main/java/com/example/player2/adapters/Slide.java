@@ -1,20 +1,20 @@
 package com.example.player2.adapters;
 
 public class Slide  {
-    private int Image;
+    private String Image;
     private String Title;
 
 
-    public Slide(int image, String title) {
+    public Slide(String  image, String title) {
         Image = image;
         Title = title;
     }
 
-    public int getImage() {
+    public String getImage() {
         return Image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         Image = image;
     }
 

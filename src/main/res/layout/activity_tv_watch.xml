@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".TvWatch">
+    android:orientation="vertical">
 
     <VideoView
         android:id="@+id/videoView"

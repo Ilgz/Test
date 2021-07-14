@@ -1,31 +1,24 @@
 package com.example.player2.main_windows;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.player2.R;
-import com.example.player2.adapters.MovieAdapter;
 import com.example.player2.adapters.MovieItemClickList;
+import com.example.player2.adapters.TeleAdapter;
 import com.example.player2.models.Movie;
-import com.example.player2.ui.GlavStranitsa;
-import com.example.player2.ui.MovieDetailActivity;
+import com.example.player2.ui.MediaActivity;
+import com.example.player2.ui.TeleDetailActivity;
 import com.example.player2.utils.DataSource;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -38,16 +31,9 @@ import java.io.IOException;
 
 
 public class TeleFragment extends Fragment implements MovieItemClickList {
-    private Runnable runnable, runnable2, runnable3, runnable4, runnable5, runnable6;
-    private Thread secThread, Thread3, Thread4, Thread5, Thread6, Thread7;
-    private Document document, tnt, Match, RenTv, Rossia24, Sts;
-    private SharedPreferences sharedPreferences;
-    private static final String Shared_pref_Name = "mypref";
-    private static final String Key_Name = "name";
-    private  String thewhole, matchtvS, RenTvS, Rossia24S, StsS;
+    private  String whole, matchTvS, RenTvS, Russia24S, StsS;
     private  String tntS;
     private View v;
-    private Activity mActivity;
 
 
 
@@ -57,16 +43,14 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
             v = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_tele, container, false);
 
             ini();
             TextView textView = v.findViewById(R.id.textView4);
-            textView.setOnClickListener(v -> {
-                numbb();
-            });
+            textView.setOnClickListener(v -> numb());
             if(getActivity()!=null) {
                 Intest();
             }
@@ -79,44 +63,32 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
         BottomNavigationView bottomNavigationView = v.findViewById(R.id.bottomnav);
         bottomNavigationView.setSelectedItemId(R.id.menu_telek);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-                switch (item.getItemId()) {
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.glavstr) {
+                startActivity(new Intent(getActivity(), MediaActivity.class));
+                getActivity().finish();
+                return true;
+            } else if (item.getItemId() == R.id.menu_profile) {
+                startActivity(new Intent(getActivity(), ProfileActivity.class));
+                getActivity().finish();
 
-                    case R.id.glavstr:
-                        startActivity(new Intent(getActivity(), GlavStranitsa.class));
-                        return true;
-                    case R.id.menu_telek:
-
-                        return true;
-                    case R.id.menu_profile:
-                        startActivity(new Intent(getActivity(), ProfileActivity.class));
-                        return true;
-                }
-                return false;
-            }
+                return true;
+            } else return item.getItemId() == R.id.menu_telek;
         });
         return v;
 
     }
     private void init6() {
-        runnable6 = new Runnable() {
-            @Override
-            public void run() {
-                getweb6();
-            }
-        };
-        Runnable target;
-        Thread7=new Thread(runnable6);
-        Thread7.start();
+        Runnable runnable6 = this::getWeb6;
+        Thread thread7 = new Thread(runnable6);
+        thread7.start();
     }
 
-    private void getweb6() {
+    private void getWeb6() {
         try {
-            Sts = Jsoup.connect("https://tv.mail.ru/moskva/channel/1112/").get();
-            Elements time = Sts.getElementsByClass("p-programms__item__time-value");
-            Elements name = Sts.getElementsByClass("p-programms__item__name-link");
+            Document sts = Jsoup.connect("https://tv.mail.ru/moskva/channel/1112/").get();
+            Elements time = sts.getElementsByClass("p-programms__item__time-value");
+            Elements name = sts.getElementsByClass("p-programms__item__name-link");
             String firstT = time.get(0).text();
             String firstN = name.get(0).text();
             String secondT = time.get(1).text();
@@ -147,8 +119,6 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
             String fourteenN = name.get(13).text();
             String fifteenT = time.get(14).text();
             String fifteenN = name.get(14).text();
-            String sixteenT = time.get(15).text();
-            String sixteenN = name.get(15).text();
             StsS = firstT + "|" + firstN + "\n" + secondT + "|" + secondN + "\n" + thirdT + "|" + thirdN + "\n" + fourthT + "|" + fourthN + "\n" + fifthT + "|" + fifthN + "\n" + sixT + "|" + sixN + "\n" + seventhT + "|" + seventhN + "\n" + eightT + "|" + eightN + "\n" + ninthT + "|" + ninthN + "\n" + tenT + "|" + tenN + "\n" + elevenT + "|" + elevenN + "\n" + twelveT+ "|" + twelveN + "\n" + thirteenthT + "|" + thirteenthN + "\n" + fourteenT+ "|" + fourteenN + "\n" + fifteenT+ "|" + fifteenN ;
 
         } catch (IOException e) {
@@ -157,20 +127,14 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
     }
 
     private void init5() {
-        runnable5 = new Runnable() {
-            @Override
-            public void run() {
-                getweb5();
-            }
-        };
-        Runnable target;
-        Thread6 = new Thread(runnable5);
-        Thread6.start();
+        Runnable runnable5 = this::getWeb5;
+        Thread thread6 = new Thread(runnable5);
+        thread6.start();
     }
 
-    private void getweb5() {
+    private void getWeb5() {
         try {
-            tnt = Jsoup.connect("https://tv.mail.ru/bishkek/channel/2595/").get();
+            Document tnt = Jsoup.connect("https://tv.mail.ru/bishkek/channel/2595/").get();
             Elements time = tnt.getElementsByClass("p-programms__item__time-value");
             Elements name = tnt.getElementsByClass("p-programms__item__name-link");
             String firstT = time.get(0).text();
@@ -211,22 +175,16 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
     }
 
     private void init4() {
-        runnable4 = new Runnable() {
-            @Override
-            public void run() {
-                getweb4();
-            }
-        };
-        Runnable target;
-        Thread5 = new Thread(runnable4);
-        Thread5.start();
+        Runnable runnable4 = this::getweb4;
+        Thread thread5 = new Thread(runnable4);
+        thread5.start();
     }
 
     private void getweb4() {
         try {
-            Rossia24 = Jsoup.connect("https://tv.mail.ru/bishkek/channel/2519/").get();
-            Elements time = Rossia24.getElementsByClass("p-programms__item__time-value");
-            Elements name = Rossia24.getElementsByClass("p-programms__item__name-link");
+            Document russia24 = Jsoup.connect("https://tv.mail.ru/bishkek/channel/2519/").get();
+            Elements time = russia24.getElementsByClass("p-programms__item__time-value");
+            Elements name = russia24.getElementsByClass("p-programms__item__name-link");
             String firstT = time.get(0).text();
             String firstN = name.get(0).text();
             String secondT = time.get(1).text();
@@ -257,9 +215,7 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
             String fourteenN = name.get(13).text();
             String fifteenT = time.get(14).text();
             String fifteenN = name.get(14).text();
-            String sixteenT = time.get(15).text();
-            String sixteenN = name.get(15).text();
-            Rossia24S = firstT + "|" + firstN + "\n" + secondT + "|" + secondN + "\n" + thirdT + "|" + thirdN + "\n" + fourthT + "|" + fourthN + "\n" + fifthT + "|" + fifthN + "\n" + sixT + "|" + sixN + "\n" + seventhT + "|" + seventhN + "\n" + eightT + "|" + eightN + "\n" + ninthT + "|" + ninthN + "\n" + tenT + "|" + tenN + "\n" + elevenT + "|" + elevenN + "\n" + twelveT+ "|" + twelveN + "\n" + thirteenthT + "|" + thirteenthN + "\n" + fourteenT+ "|" + fourteenN + "\n" + fifteenT+ "|" + fifteenN ;
+            Russia24S = firstT + "|" + firstN + "\n" + secondT + "|" + secondN + "\n" + thirdT + "|" + thirdN + "\n" + fourthT + "|" + fourthN + "\n" + fifthT + "|" + fifthN + "\n" + sixT + "|" + sixN + "\n" + seventhT + "|" + seventhN + "\n" + eightT + "|" + eightN + "\n" + ninthT + "|" + ninthN + "\n" + tenT + "|" + tenN + "\n" + elevenT + "|" + elevenN + "\n" + twelveT+ "|" + twelveN + "\n" + thirteenthT + "|" + thirteenthN + "\n" + fourteenT+ "|" + fourteenN + "\n" + fifteenT+ "|" + fifteenN ;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -267,22 +223,16 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
     }
 
     private void init3() {
-        runnable3 = new Runnable() {
-            @Override
-            public void run() {
-                getWeb3();
-            }
-        };
-        Runnable target;
-        Thread4 = new Thread(runnable3);
-        Thread4.start();
+        Runnable runnable3 = this::getWeb3;
+        Thread thread4 = new Thread(runnable3);
+        thread4.start();
     }
 
     private void getWeb3() {
         try {
-            RenTv = Jsoup.connect("https://tv.mail.ru/bishkek/channel/2598/").get();
-            Elements time = RenTv.getElementsByClass("p-programms__item__time-value");
-            Elements name = RenTv.getElementsByClass("p-programms__item__name-link");
+            Document renTv = Jsoup.connect("https://tv.mail.ru/bishkek/channel/2598/").get();
+            Elements time = renTv.getElementsByClass("p-programms__item__time-value");
+            Elements name = renTv.getElementsByClass("p-programms__item__name-link");
             String firstT = time.get(0).text();
             String firstN = name.get(0).text();
             String secondT = time.get(1).text();
@@ -311,21 +261,16 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
     }
 
     private void init2() {
-        runnable2 = new Runnable() {
-            @Override
-            public void run() {
-                getWeb2();
-            }
-        };
-        Thread3 = new Thread(runnable2);
-        Thread3.start();
+        Runnable runnable2 = this::getWeb2;
+        Thread thread3 = new Thread(runnable2);
+        thread3.start();
     }
 
     private void getWeb2() {
         try {
-            Match = Jsoup.connect("https://tv.mail.ru/bishkek/channel/2060/").get();
-            Elements time = Match.getElementsByClass("p-programms__item__time-value");
-            Elements name = Match.getElementsByClass("p-programms__item__name-link");
+            Document match = Jsoup.connect("https://tv.mail.ru/bishkek/channel/2060/").get();
+            Elements time = match.getElementsByClass("p-programms__item__time-value");
+            Elements name = match.getElementsByClass("p-programms__item__name-link");
             String firstT = time.get(0).text();
             String firstN = name.get(0).text();
             String secondT = time.get(1).text();
@@ -356,7 +301,7 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
             String fourteenN = name.get(13).text();
             String fifteenT = time.get(14).text();
             String fifteenN = name.get(14).text();
-            matchtvS = firstT + "|" + firstN + "\n" + secondT + "|" + secondN + "\n" + thirdT + "|" + thirdN + "\n" + fourthT + "|" + fourthN + "\n" + fifthT + "|" + fifthN + "\n" + sixT + "|" + sixN + "\n" + seventhT + "|" + seventhN + "\n" + eightT + "|" + eightN + "\n" + ninthT + "|" + ninthN + "\n" + tenT + "|" + tenN + "\n" + elevenT + "|" + elevenN + "\n" + twelveT+ "|" + twelveN + "\n" + thirteenthT + "|" + thirteenthN + "\n" + fourteenT+ "|" + fourteenN + "\n" + fifteenT+ "|" + fifteenN ;
+            matchTvS = firstT + "|" + firstN + "\n" + secondT + "|" + secondN + "\n" + thirdT + "|" + thirdN + "\n" + fourthT + "|" + fourthN + "\n" + fifthT + "|" + fifthN + "\n" + sixT + "|" + sixN + "\n" + seventhT + "|" + seventhN + "\n" + eightT + "|" + eightN + "\n" + ninthT + "|" + ninthN + "\n" + tenT + "|" + tenN + "\n" + elevenT + "|" + elevenN + "\n" + twelveT+ "|" + twelveN + "\n" + thirteenthT + "|" + thirteenthN + "\n" + fourteenT+ "|" + fourteenN + "\n" + fifteenT+ "|" + fifteenN ;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -365,21 +310,15 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
     }
 
     private void init() {
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                getWeb();
-            }
-        };
-        Runnable target;
-        secThread = new Thread(runnable);
+        Runnable runnable = this::getWeb;
+        Thread secThread = new Thread(runnable);
         secThread.start();
 
     }
 
     private void getWeb() {
         try {
-            document = Jsoup.connect("https://tv.mail.ru/moskva/channel/850/").get();
+            Document document = Jsoup.connect("https://tv.mail.ru/moskva/channel/850/").get();
 
             Elements time = document.getElementsByClass("p-programms__item__time-value");
             Elements name = document.getElementsByClass("p-programms__item__name-link");
@@ -413,17 +352,9 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
             String fourteenN = name.get(13).text();
             String fifteenT = time.get(14).text();
             String fifteenN = name.get(14).text();
-            String sixteenT = time.get(15).text();
-            String sixteenN = name.get(15).text();
-            String seventeenT = time.get(16).text();
-            String seventeenN = name.get(16).text();
-            String eighteenT = time.get(17).text();
-            String eighteenN = name.get(17).text();
-//            String twentyT = time.get(19).text();
-//            String twentyN = name.get(19).text();
-//            String twentyoneT = time.get(20).text();
-//            String twentyoneN = name.get(20).text();
-            thewhole = firstT + "|" + firstN + "\n" + secondT + "|" + secondN + "\n" + thirdT + "|" + thirdN + "\n" + fourthT + "|" + fourthN + "\n" + fifthT + "|" + fifthN + "\n" + sixT + "|" + sixN + "\n" + seventhT + "|" + seventhN + "\n" + eightT + "|" + eightN + "\n" + ninthT + "|" + ninthN + "\n" + tenT + "|" + tenN + "\n" + elevenT + "|" + elevenN + "\n" + twelveT+ "|" + twelveN + "\n" + thirteenthT + "|" + thirteenthN + "\n" + fourteenT+ "|" + fourteenN + "\n" + fifteenT+ "|" + fifteenN ;
+
+
+            whole = firstT + "|" + firstN + "\n" + secondT + "|" + secondN + "\n" + thirdT + "|" + thirdN + "\n" + fourthT + "|" + fourthN + "\n" + fifthT + "|" + fifthN + "\n" + sixT + "|" + sixN + "\n" + seventhT + "|" + seventhN + "\n" + eightT + "|" + eightN + "\n" + ninthT + "|" + ninthN + "\n" + tenT + "|" + tenN + "\n" + elevenT + "|" + elevenN + "\n" + twelveT+ "|" + twelveN + "\n" + thirteenthT + "|" + thirteenthN + "\n" + fourteenT+ "|" + fourteenN + "\n" + fifteenT+ "|" + fifteenN ;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -440,28 +371,23 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
 
     @Override
     public void OnMovieClick(Movie movie, ImageView movieImageView) {
-        Intent intent = new Intent(getActivity(), MovieDetailActivity.class);
+        Intent intent = new Intent(getActivity(), TeleDetailActivity.class);
         intent.putExtra("title", movie.getTitle());
         intent.putExtra("imgURL", movie.getThumbnail());
-        intent.putExtra("imgCover", movie.getCoverPhotot());
         intent.putExtra("descript", movie.getDescription());
         intent.putExtra("url", movie.getStreamingLink());
-        intent.putExtra("test", thewhole);
+        intent.putExtra("test", whole);
         intent.putExtra("tnt", tntS);
-        intent.putExtra("function",movie.getFunction());
-        intent.putExtra("mat", matchtvS);
+        intent.putExtra("mat", matchTvS);
         intent.putExtra("ren", RenTvS);
-        intent.putExtra("ros", Rossia24S);
+        intent.putExtra("ros", Russia24S);
         intent.putExtra("sts",StsS);
-        Activity activity;
-        View view;
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), movieImageView, "sharedName");
-        Toast.makeText(getActivity(), "item clicked: " + movie.getTitle(), Toast.LENGTH_LONG);
         startActivity(intent, options.toBundle());
     }
 
     private void Intest() {
-         MovieAdapter channelsAdapter = new MovieAdapter(getActivity(), DataSource.getChannels(), this);
+         TeleAdapter channelsAdapter = new TeleAdapter(getActivity(), DataSource.getChannels(), this);
 
         RecyclerView recyclerView = v.findViewById(R.id.Rv_telik);
 
@@ -472,7 +398,7 @@ public class TeleFragment extends Fragment implements MovieItemClickList {
         recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
     }
 
-    public void numbb() {
-        startActivity(new Intent(getActivity(),Dialo.class));
+    public void numb() {
+        startActivity(new Intent(getActivity(), Support.class));
     }
 }

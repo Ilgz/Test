@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/ubuntu"
     android:background="@drawable/secondary_background"
     tools:context=".main_windows.ProfileActivity">
 
@@ -38,24 +39,6 @@
         android:rotationX="-360"
         android:rotationY="-360"
         android:text="@string/Устройства"
-        android:textStyle="bold"
-        app:backgroundTint="@color/yellow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="181dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="111dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="119dp"
-        android:fontFamily="@font/yanone_kaffeesatz"
-        android:rotation="-360"
-        android:rotationX="-360"
-        android:rotationY="-360"
-        android:text="@string/Настройки"
         android:textStyle="bold"
         app:backgroundTint="@color/yellow"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +118,6 @@
         android:layout_marginTop="19dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/Настройки"
         android:textColor="#c35f4f"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"

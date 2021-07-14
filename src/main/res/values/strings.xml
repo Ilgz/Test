@@ -4,7 +4,7 @@
     <string name="fb_login_protocol_scheme">fb463381324868964</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragmentation</string>
     <string name="blank">\u0020\u0020\u0020\u0020</string>
     <string name="Промокод">Промокод</string>
@@ -14,5 +14,12 @@
     <string name="Имяпо">Имя пользователя</string>
     <string name="Поддержка">Поддержка</string>
     <string name="ВашБаланс">Ваш баланс 0 сом</string>
+    <string name="Телеканалы">Телеканалы</string>
+    <string name="Спорт">Спорт</string>
+    <string name="ОтправитьКод">Отправить\n код</string>
+    <string name="Авторизация">Авторизация</string>
+    <string name="ВведитеНомер">Введите номер \nмобильного телефона</string>
+    <string name="Год">\Год: \</string>
+    <string name="Страна">\Страна:⠀\</string>
 
 </resources>

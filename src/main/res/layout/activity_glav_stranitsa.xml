@@ -7,11 +7,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/secondary_background"
     android:fillViewport="true"
-    tools:context=".ui.GlavStranitsa">
+    tools:context=".ui.MediaActivity">
 
     <fragment
         android:id="@+id/fragmentttt"
-        android:name="com.example.player2.ui.GlavstrFragment"
+        android:name="com.example.player2.ui.MediaFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"

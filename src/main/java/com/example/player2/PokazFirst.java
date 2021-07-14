@@ -12,7 +12,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,9 +28,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.jetbrains.annotations.NotNull;
 
 public class PokazFirst extends AppCompatActivity implements MovieItemClickList {
-    MovieAdapter noviyAdapter = new MovieAdapter(this, DataSource.getNewestMovie(), this);
+    final DataSource dataSource=new DataSource();
+
+    final MovieAdapter noviyAdapter = new MovieAdapter(this, dataSource.getNewestMovie(), this);
 RecyclerView recyclerView;
-    ImageButton profile, home, search, channels;
     SharedPreferences sharedPreferences;
     public static final String Shared_pref_Name="mypref";
     public static final String Key_Name="name";
@@ -84,9 +84,9 @@ RecyclerView recyclerView;
         Intent intent = new Intent(this, MovieDetailActivity.class);
         intent.putExtra("title", movie.getTitle());
         intent.putExtra("imgURL", movie.getThumbnail());
-        intent.putExtra("imgCover", movie.getCoverPhotot());
         intent.putExtra("descript", movie.getDescription());
         intent.putExtra("url", movie.getStreamingLink());
+        intent.putExtra("siteLink",movie.getSiteLink());
 
 
         Activity activity;

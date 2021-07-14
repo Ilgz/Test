@@ -5,13 +5,10 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,46 +23,43 @@ import com.example.player2.utils.DataSource;
 import com.example.player2.utils.SpacingItemDecoratorVertical;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
+import java.util.Objects;
 
 public class PokazSecond extends AppCompatActivity implements MovieItemClickList {
-    MovieAdapter noviyAdapter = new MovieAdapter(this, (List<Movie>) DataSource.getPopularMovie(), this);
+    final DataSource dataSource=new DataSource();
+
+    final MovieAdapter noviyAdapter = new MovieAdapter(this, (List<Movie>) dataSource.getSeries(), this);
 RecyclerView recyclerView;
-    ImageButton profile, home, search, channels;
     SharedPreferences sharedPreferences;
     public static final String Shared_pref_Name="mypref";
     public static final String Key_Name="name";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_pokaz_second);
-        getSupportActionBar().setTitle("Сериалы");
+        setContentView(R.layout.activity_pokaz_first);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Сериалы");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnav);
         bottomNavigationView.setSelectedItemId(R.id.glavstr);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.glavstr:
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.glavstr:
 
-                        return true;
-                    case R.id.menu_telek:
-                        startActivity(new Intent(getApplicationContext(), TeleChannelActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.menu_profile:
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
+                    return true;
+                case R.id.menu_telek:
+                    startActivity(new Intent(getApplicationContext(), TeleChannelActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.menu_profile:
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
             }
+            return false;
         });
 
-        recyclerView=findViewById(R.id.Kroko2);
+        recyclerView=findViewById(R.id.Kroko);
         SpacingItemDecoratorVertical itemDecorator = new SpacingItemDecoratorVertical(40);
 
         recyclerView.addItemDecoration(itemDecorator);
@@ -88,9 +82,9 @@ RecyclerView recyclerView;
         Intent intent = new Intent(this, MovieDetailActivity.class);
         intent.putExtra("title", movie.getTitle());
         intent.putExtra("imgURL", movie.getThumbnail());
-        intent.putExtra("imgCover", movie.getCoverPhotot());
         intent.putExtra("descript", movie.getDescription());
         intent.putExtra("url", movie.getStreamingLink());
+        intent.putExtra("siteLink",movie.getSiteLink());
 
 
         Activity activity;

@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.player2">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-feature android:name="android.software.leanback"
+
+    <uses-feature
+        android:name="android.software.leanback"
         android:required="false" />
-        <uses-feature android:name="android.hardware.touchscreen"
-            android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
 
     <application
-        android:banner="@drawable/ic_tv"
         android:allowBackup="true"
+        android:banner="@drawable/ic_television__2_"
         android:icon="@mipmap/ic_ucon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_ucon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Player2"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main_windows.PromotionActivity"
-            android:parentActivityName=".main_windows.ProfileActivity">
+        <activity
+            android:name=".main_windows.PromotionActivity"
+            android:parentActivityName=".main_windows.ProfileActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".main_windows.OtpActivity" />
-        <activity android:name=".main_windows.RegisterActivity">
+        <activity android:name=".main_windows.OtpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".main_windows.RegisterActivity"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".PokazFirst"
-            android:parentActivityName=".ui.GlavStranitsa">
+            android:parentActivityName=".ui.MediaActivity"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".main_windows.ProfileActivity"
-           ></activity>
-        <activity android:name=".main_windows.TeleChannelActivity" />
-        <activity android:name=".main_windows.Logo_Activity">
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".main_windows.TeleChannelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main_windows.Logo_Activity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,7 +57,8 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.GlavStranitsa"
+        <activity
+            android:name=".ui.MediaActivity"
             android:screenOrientation="portrait">
 
         </activity>
@@ -61,14 +73,22 @@
         <activity
             android:name=".ui.MovieDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:parentActivityName=".ui.GlavStranitsa" />
+            android:parentActivityName=".ui.MediaActivity" />
         <activity
             android:name=".ui.PokazSecond"
-            android:parentActivityName=".ui.GlavStranitsa" />
+            android:parentActivityName=".ui.MediaActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.PokazThird"
-            android:parentActivityName=".ui.GlavStranitsa" />
-        <activity android:name=".main_windows.Dialo" android:parentActivityName=".main_windows.ProfileActivity"/>
+            android:parentActivityName=".ui.MediaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main_windows.Support"
+            android:parentActivityName=".main_windows.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.TeleDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            />
     </application>
 
 </manifest>

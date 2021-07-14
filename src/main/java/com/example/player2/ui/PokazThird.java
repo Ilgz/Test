@@ -26,7 +26,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.jetbrains.annotations.NotNull;
 
 public class PokazThird extends AppCompatActivity implements MovieItemClickList {
-    MovieAdapter noviyAdapter = new MovieAdapter(this, DataSource.getCartoons(), this);
+    final DataSource dataSource=new DataSource();
+
+
+    final MovieAdapter noviyAdapter = new MovieAdapter(this, dataSource.getCartoons(), this);
     RecyclerView recyclerView;
     SharedPreferences sharedPreferences;
     public static final String Shared_pref_Name = "mypref";
@@ -35,10 +38,10 @@ public class PokazThird extends AppCompatActivity implements MovieItemClickList 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_pokaz_third);
+        setContentView(R.layout.activity_pokaz_first);
         getSupportActionBar().setTitle("Мультфильмы");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        recyclerView = findViewById(R.id.Kroko3);
+        recyclerView = findViewById(R.id.Kroko);
         SpacingItemDecoratorVertical itemDecorator = new SpacingItemDecoratorVertical(40);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnav);
         bottomNavigationView.setSelectedItemId(R.id.glavstr);
@@ -82,9 +85,9 @@ public class PokazThird extends AppCompatActivity implements MovieItemClickList 
         Intent intent = new Intent(this, MovieDetailActivity.class);
         intent.putExtra("title", movie.getTitle());
         intent.putExtra("imgURL", movie.getThumbnail());
-        intent.putExtra("imgCover", movie.getCoverPhotot());
         intent.putExtra("descript", movie.getDescription());
         intent.putExtra("url", movie.getStreamingLink());
+        intent.putExtra("siteLink",movie.getSiteLink());
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(PokazThird.this, movieImageView, "sharedName");
         Toast.makeText(this, "item clicked: " + movie.getTitle(), Toast.LENGTH_LONG);
         startActivity(intent, options.toBundle());
