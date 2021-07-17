@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_g"
+    tools:context=".PokazFirst">
+
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Популярные фильмы"
+        android:textColor="@color/For_titles"
+        app:layout_constraintBottom_toTopOf="@+id/Kroko2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Kroko2"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="408dp"
+        android:layout_height="64dp"
+        android:background="#1a1a1a"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/homemain"
+            android:layout_width="65dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_yellow_home" />
+
+        <ImageButton
+            android:id="@+id/telekanal"
+            android:layout_width="65dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@+id/textChannel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_tv" />
+
+        <ImageButton
+            android:id="@+id/profile"
+            android:layout_width="65dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginEnd="46dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@+id/textProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/telekanal"
+            app:srcCompat="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/textHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="58dp"
+            android:text="Главная"
+            android:textColor="@color/yellow"
+            app:layout_constraintEnd_toStartOf="@+id/textChannel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homemain" />
+
+        <TextView
+            android:id="@+id/textChannel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Телеканалы"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/telekanal" />
+
+        <TextView
+            android:id="@+id/textProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
+            android:layout_marginEnd="51dp"
+            android:text="Профиль"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textChannel"
+            app:layout_constraintTop_toBottomOf="@+id/profile" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

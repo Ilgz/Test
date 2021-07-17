@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".main_windows.MainActivity">
+
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="634dp"
+        android:layout_marginEnd="233dp"
+        android:layout_marginBottom="207dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="55dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="616dp"
+        android:layout_marginBottom="197dp"
+        android:background="#ffc20f"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/google_little" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="55dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="617dp"
+
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="196dp"
+        android:background="#ffc20f"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.351"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/facebook" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="237dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginBottom="699dp"
+        android:text="ИНТЕРНЕТ-ТВ "
+        android:textColor="@color/yellow"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.591"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="207dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginBottom="632dp"
+        android:paddingLeft="15dp"
+        android:text="ПРОВАЙДЕР"
+        android:textColor="@color/yellow"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="254dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="294dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="513dp"
+        android:background="#212121"
+        android:ems="10"
+        android:hint="   пользователь@gmail.com"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textColor="#6d6d6d"
+        android:textColorHint="#606060"
+        android:textColorLink="#6d6d6d"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/pasField"
+        android:layout_width="254dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="406dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="401dp"
+        android:background="#212121"
+        android:ems="10"
+        android:hint="   ********"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:textColor="#6d6d6d"
+        android:textColorHint="#606060"
+        android:textColorLink="#6d6d6d"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="258dp"
+        android:layout_marginEnd="233dp"
+        android:layout_marginBottom="587dp"
+        android:text="Эл.адрес"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="368dp"
+        android:layout_marginEnd="246dp"
+        android:layout_marginBottom="477dp"
+        android:text="Пароль"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="245dp"
+        android:layout_marginEnd="71dp"
+        android:elevation="100dp"
+        android:onClick="ZabylKodIntent"
+        android:text="ЗАБЫЛ?"
+        app:backgroundTint="#212121"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:id="@+id/newBTNsignin"
+        android:layout_width="254dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="488dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="325dp"
+        android:background="@drawable/roundto"
+        android:text="Логин"
+        android:textColor="@color/black"
+        app:backgroundTint="#ffc20f"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="295dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.686" />
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="283dp"
+        android:layout_marginEnd="28dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.686" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="590dp"
+        android:layout_marginBottom="290dp"
+        android:text="Другие логины"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_sign_in"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:background="#ffc20f"
+        android:foreground="@drawable/google_little"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.09"></com.google.android.gms.common.SignInButton>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="714dp"
+        android:layout_marginBottom="136dp"
+        android:text="Нет учетной записи?"
+        android:textColor="#212121"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/newBTNRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="761dp"
+        android:layout_marginBottom="60dp"
+        android:text="РЕГИСТР"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="55dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="23dp"
+        android:background="#ffc20f"
+        android:onClick="phic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:srcCompat="@drawable/ic_phone_black" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_element"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/nameField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:hint="Введите имя"
+            android:text=""
+            android:textColor="@color/white"
+            android:textColorHint="#191919"
+            android:textSize="20sp"
+            app:met_baseColor="#0056d3"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#982360"
+            app:met_singleLineEllipsis="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/familField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:hint="Введите фамилию "
+            android:inputType="textVisiblePassword"
+            android:textColor="@color/white"
+            android:textColorHint="#191919"
+            android:textSize="20sp"
+            app:met_baseColor="#0056d3"
+            app:met_floatingLabel="highlight"
+
+            app:met_primaryColor="#982360"
+            app:met_singleLineEllipsis="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/emailField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:hint="Введите почту"
+android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textColorHint="#191919"
+            android:textSize="20sp"
+
+            app:met_baseColor="#0056d3"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#982360"
+            app:met_singleLineEllipsis="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/pasFieldf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:hint="Пароль"
+            android:inputType="textPassword"
+            android:text=""
+
+            android:textColor="@color/white"
+            android:textColorHint="#191919"
+            android:textSize="20sp"
+            app:met_baseColor="#0056d3"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#982360"
+            app:met_singleLineEllipsis="true"
+            app:passwordToggleEnabled="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/conpasField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:hint="Подтвердите пароль"
+            android:inputType="textPassword"
+            android:text=""
+            android:textColor="@color/white"
+
+            android:textColorHint="#191919"
+            android:textSize="20sp"
+            app:met_baseColor="#0056d3"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#982360"
+            app:met_singleLineEllipsis="true"
+            app:passwordToggleEnabled="true" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

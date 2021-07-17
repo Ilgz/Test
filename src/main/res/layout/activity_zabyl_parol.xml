@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/holo_dark"
+    tools:context=".main_windows.ZabylParol">
+
+    <Button
+        android:id="@+id/BTNpasswordReset"
+        android:layout_width="254dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="501dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="174dp"
+        android:background="@drawable/roundto"
+        android:text="Отправить"
+        app:backgroundTint="#ffc20f"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.557" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Эл.адрес"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/etPaswordMail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etPaswordMail"
+        android:layout_width="254dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="305dp"
+        android:background="#212121"
+        android:ems="10"
+        android:hint="   Эл.адрес здесь"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp"
+
+        android:textColor="#6d6d6d"
+        android:textColorHint="#606060"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintVertical_bias="0.99" />
+
+    <TextView
+        android:layout_width="237dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginBottom="239dp"
+        android:text="ИНТЕРНЕТ-ТВ "
+        android:textColor="@color/yellow"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.591"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="207dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="177dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="623dp"
+        android:paddingLeft="15dp"
+        android:text="ПРОВАЙДЕР"
+        android:textColor="@color/yellow"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Забыли пароль?"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="275dp"
+        android:layout_height="103dp"
+        android:text="Введите адрес электронной почты, который вы использовали для создания учетной записи, и мы отправим вам ссылку для сброса пароля по электронной почте."
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.377" />
+</androidx.constraintlayout.widget.ConstraintLayout>

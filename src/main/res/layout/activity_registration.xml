@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registration">
+
+    <Button
+        android:id="@+id/reg_button"
+        android:layout_width="254dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="86dp"
+        android:background="@drawable/roundto"
+        android:text="ЗАРЕГИСТРИРОВАТЬСЯ"
+        android:textColor="@color/black"
+        app:backgroundTint="#ffc20f"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/fieldName"
+        android:layout_width="354dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="72dp"
+        android:background="#212121"
+        android:ems="10"
+        android:hint="   Имя здесь"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textColor="#6d6d6d"
+        android:textColorHint="#606060"
+        app:layout_constraintBottom_toTopOf="@+id/fieldSurname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/fieldPas"
+        android:layout_width="354dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="64dp"
+        android:background="#212121"
+        android:ems="10"
+        android:hint="   Пароль здесь"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textColor="#6d6d6d"
+        android:textColorHint="#606060"
+        app:layout_constraintBottom_toTopOf="@+id/fieldConPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/fieldConPass"
+        android:layout_width="354dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="36dp"
+        android:background="#212121"
+        android:ems="10"
+        android:hint="   Подтвердить пароль здесь"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textColor="#6d6d6d"
+        android:textColorHint="#606060"
+        app:layout_constraintBottom_toTopOf="@+id/reg_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/fieldSurname"
+        android:layout_width="354dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="64dp"
+        android:background="#212121"
+        android:ems="10"
+        android:hint="   Фамилия здесь"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textColor="#6d6d6d"
+        android:textColorHint="#606060"
+        app:layout_constraintBottom_toTopOf="@+id/FieldMail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/FieldMail"
+        android:layout_width="354dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="64dp"
+        android:background="#212121"
+        android:ems="10"
+        android:hint="   Эл.адрес здесь"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp"
+        android:textColor="#6d6d6d"
+        android:textColorHint="#606060"
+        app:layout_constraintBottom_toTopOf="@+id/fieldPas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="321dp"
+        android:layout_marginBottom="5dp"
+        android:text="Имя"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/fieldName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="325dp"
+        android:layout_marginBottom="5dp"
+        android:text="Подтвердите пароль"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/fieldConPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="326dp"
+        android:layout_marginBottom="5dp"
+        android:text="Пароль"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/fieldPas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="325dp"
+        android:layout_marginBottom="5dp"
+        android:text="Эл.адрес"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/FieldMail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="326dp"
+        android:layout_marginBottom="5dp"
+        android:text="Фамилия"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/fieldSurname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
