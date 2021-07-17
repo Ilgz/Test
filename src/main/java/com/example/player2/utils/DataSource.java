@@ -27,7 +27,6 @@ public class DataSource {
 
     public List<Movie> getNewestMovie() {
         listMovies.add(new Movie("Ледяной драйв", "https://gidonline.io//img/620eb7e1d_200x300.jpg", "https://gidonline.io/film/ledyanoj-drajv/"));
-        listMovies.add(new Movie("Ледяной драйв", "https://gidonline.io//img/620eb7e1d_200x300.jpg", "https://gidonline.io/film/ledyanoj-drajv/"));
         listMovies.add(new Movie("Бесконечность", "https://gidonline.io//img/fbc8e230b_200x300.jpg", "https://gidonline.io/film/beskonechnost-2/"));
         listMovies.add(new Movie("Армия мертвецов", "https://gidonline.io//img/82e5dd33b_200x300.jpg", "https://gidonline.io/film/armiya-mertvecov/"));
         listMovies.add(new Movie("Круэлла", "https://gidonline.io//img/da76dc1c0_200x300.jpg", "https://gidonline.io/film/kruella/"));

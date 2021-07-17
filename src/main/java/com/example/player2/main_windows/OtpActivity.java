@@ -141,15 +141,15 @@ hideKeyboard(v);
         FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
 
 
-        firebaseFirestore.collection("Clients").document(phone).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firebaseFirestore.collection("Customers").document(phone).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
 if(task.isSuccessful()){
     DocumentSnapshot result=task.getResult();
     if(!result.exists()){
-        Map<String,String> items = new HashMap<>();
-        items.put("Time","1");
-        firebaseFirestore.collection("Clients").document(phone).set(items);
+        Map<String,Long> items = new HashMap<>();
+        items.put("AdditionalTime", (long) 864_000_00);
+        firebaseFirestore.collection("Customers").document(phone).set(items);
     }
 }
             }
